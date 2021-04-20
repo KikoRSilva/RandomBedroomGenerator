@@ -1,0 +1,52 @@
+<div class="white-box">
+  <div class="container">
+    <h1 class="text-center text-dark py-4">Insert your names</h1>
+    <hr />
+    <div class="container">
+      <div class="row py-2" *ngIf="sharedBeds != 0">
+        <h4 class="text-dark text-center">
+          {{ sharedBeds }} people have to share the same bed
+        </h4>
+      </div>
+      <form #namesForm="ngForm" (ngSubmit)="onSubmit(namesForm)">
+        <div
+          *ngFor="let bed of bedsQuantity; let i = index"
+          class="row py-2 px-5"
+        >
+          <label
+            for="colFormLabelLg"
+            class="col-sm-3 col-form-label col-form-label-lg text-end"
+            >Person {{ bed }}
+          </label>
+          <div class="col-sm-9">
+            <input
+              type="text"
+              class="form-control form-control-lg"
+              placeholder="Enter a name..."
+              required
+              name="name-{{ i }}"
+              [ngModel]="names.names"
+            />
+          </div>
+        </div>
+
+        <div class="row text-center py-5">
+          <div class="col-12">
+            <h4 *ngIf="showSpinner" class="text-dark text-center">
+              Generating
+            </h4>
+            <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+            <button
+              *ngIf="!showSpinner"
+              type="submit"
+              class="btn btn-primary btn-lg text-white shadow-sm"
+              [disabled]="!namesForm.valid"
+            >
+              Randomize
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

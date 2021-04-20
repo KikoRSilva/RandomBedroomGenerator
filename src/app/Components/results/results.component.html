@@ -1,0 +1,29 @@
+<div class="white-box">
+  <div class="container">
+    <h1 class="text-dark text-center py-5">Generated Results</h1>
+    <div class="container">
+      <div class="row">
+        <div class="result" *ngFor="let result of results; let i = index">
+          <div class="row">
+            <div class="col-12 text-center">
+              <h3 class="text-dark">
+                Bedroom {{ i + 1 }} goes to:
+                <span class="text-primary fs-3">{{ result }}</span>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row py-5">
+        <div class="col-sm-12 text-center">
+          <button
+            class="btn btn-primary text-white shadow-sm"
+            [routerLink]="['/']"
+          >
+            Generate Again
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
