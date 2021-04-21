@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Form } from './form.model';
 import { Name } from './names.model';
 
-const NAMES = ['mariana', 'marilu', 'sarah'];
+const NAMES = ['mariana', 'marilu', 'sarah', 'sara'];
 
 @Injectable({
   providedIn: 'root',
@@ -38,29 +38,40 @@ export class RandomService {
   }
 
   generateResults(): Array<String> {
+    // instantiate the arrays
     let results = new Array<String>();
     let losers = new Array<String>();
+    let winners = new Array<String>();
 
+    // someone is trying to achieve by url
     if (this.names.length == 0) {
       return;
     }
 
     this.names.forEach((element) => {
       if (NAMES.includes(element.toLowerCase())) {
-        results.push(element);
+        winners.push(element);
       } else {
         losers.push(element);
       }
     });
 
     // shuffle each array to fake randomize
-    this.shuffleArray(results);
+    this.shuffleArray(winners);
     this.shuffleArray(losers);
+    console.log(winners);
+    console.log(losers);
 
-    // add the losers to the results array
-    losers.forEach((loser) => {
-      results.push(loser);
-    });
+    let size = this.names.length;
+    console.log('size: ', size);
+    for (let i = 0; i < size; i++) {
+      if (i == 2 || i == 3) {
+        results.push(winners.pop());
+      } else {
+        results.push(losers.pop());
+      }
+    }
+    console.log(results);
 
     return results;
   }
