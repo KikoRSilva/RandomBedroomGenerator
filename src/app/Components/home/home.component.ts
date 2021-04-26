@@ -12,7 +12,7 @@ import { RandomService } from 'src/app/shared/random.service';
 })
 export class HomeComponent implements OnInit {
   form: Form;
-  title = 'RANDOM BEDROOM CHOOSER';
+  title = 'RANDOM BEDROOM GENERATOR';
   submitted: boolean = false;
 
   constructor(
